@@ -26,20 +26,20 @@ app.get('/', function(req, res){
           });
         });
 
-      socket.on('disconnet', () => {
-        userService.removeUser(socket.id);
-        socket.broadcast.emit('update', {
-          users: userService.getAllUsers()
+        socket.on('disconnet', () => {
+          userService.removeUser(socket.id);
+          socket.broadcast.emit('update', {
+            users: userService.getAllUsers()
+            });
           });
-        });
 
-      socket.on('message', function(message){
-        const {name} = userService.getUserById(socket.id);
-        socket.broadcast.emit('message', {
-          text: message.text,
-                from: name
-              });
-          });
+          socket.on('message', function(message){
+          const {name} = userService.getUserById(socket.id);
+          socket.broadcast.emit('message', {
+            text: message.text,
+                  from: name
+                });
+            });
       });
 
 server.listen(3000, function(){
