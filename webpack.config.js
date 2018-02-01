@@ -4,19 +4,30 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeJsPlugin = require('optimize-js-plugin');
 
+var env = process.env.NODE_ENV || 'development';
+let plugins = [];
+
+console.log('NODE_ENV:', env);
+
+if (env === 'production') {
+      plugins.push(
+          new webpack.optimize.UglifyJsPlugin(),
+          new OptimizeJsPlugin({
+            sourceMap: false
+          })
+        );
+}
 
 module.exports = {
-    entry: (env !== 'production' ? [
-          'react-hot-loader/patch',
-          'webpack-dev-server/client?http://localhost:8080',
-          'webpack/hot/only-dev-server',
-      ] : []).concat(['./client/index.js']),
-
+    entry: [
+        'react-hot-loader/patch',
+        './client/index.js'
+    ],
     output: {
-    filename: './bundle.js',
-    path: path.resolve(__dirname, 'public'),
+        path: path.resolve(__dirname, 'build'),
+        filename: './bundle.js'
     },
-    
+
     module: {
 		rules: [
 		    {
@@ -38,24 +49,11 @@ module.exports = {
 		]
 	},
 
-	plugins: [
-		new HtmlWebpackPlugin({
-			template: 'src/index.html',
-			filename: 'index.html',
-			inject: 'body'
+    plugins: [
+      		new HtmlWebpackPlugin({
+      			template: 'client/index.html',
+      			filename: 'index.html',
+      			inject: 'body'
 		})
 	]
 };
-
-var env = process.env.NODE_ENV || 'development';
-
-console.log('NODE_ENV:', env);
-
-if (env === 'production') {
-plugins.push(
-    new webpack.optimize.UglifyJsPlugin(),
-    new OptimizeJsPlugin({
-      sourceMap: false
-    })
-  );
-}

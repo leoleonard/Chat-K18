@@ -1,9 +1,9 @@
-import React, (Component) from 'react';
+import React, {Component} from 'react';
 
 import styles from './UserForm.css';
 
 class UserForm extends Component {
-  contructor(props) {
+  constructor(props) {
     super(props);
     this.state = {name: ''};
   }

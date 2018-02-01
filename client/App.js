@@ -10,12 +10,10 @@ import UserForm from './UserForm';
 
 const socket = io('/');
 
-const socket = io('/');
-
 class App extends Component {
-  constructor(props) {          //stan początkowy
+  constructor(props) {
     super(props);
-    this.state = {users: [], messages: [], text: '', name ''};
+    this.state = {users: [], messages: [], text: '', name: ''};
   }
 
   componentDidMount() {
