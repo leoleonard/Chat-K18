@@ -11588,120 +11588,118 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-
-
-var socket = __WEBPACK_IMPORTED_MODULE_1_socket_io_client___default()('/');
+var socket = __WEBPACK_IMPORTED_MODULE_1_socket_io_client___default()('http://localhost:3000');
 
 var App = function (_Component) {
-  _inherits(App, _Component);
+	_inherits(App, _Component);
 
-  function App(props) {
-    _classCallCheck(this, App);
+	function App(props) {
+		_classCallCheck(this, App);
 
-    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+		var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
-    _this.state = { users: [], messages: [], text: '', name: '' };
-    return _this;
-  }
+		_this.state = { users: [], messages: [], text: '', name: '' };
+		return _this;
+	}
 
-  _createClass(App, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this2 = this;
+	_createClass(App, [{
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			var _this2 = this;
 
-      socket.on('message', function (message) {
-        return _this2.messageReceive(message);
-      });
-      socket.on('update', function (_ref) {
-        var users = _ref.users;
-        return _this2.chatUpdate(users);
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return this.state.name != '' ? this.rednerLayout() : this.renderUserForm();
-    }
-  }, {
-    key: 'renderLayout',
-    value: function renderLayout() {
-      var _this3 = this;
+			socket.on('message', function (message) {
+				return _this2.messageReceive(message);
+			});
+			socket.on('update', function (_ref) {
+				var users = _ref.users;
+				return _this2.chatUpdate(users);
+			});
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			return this.state.name !== '' ? this.renderLayout() : this.renderUserForm();
+		}
+	}, {
+		key: 'renderLayout',
+		value: function renderLayout() {
+			var _this3 = this;
 
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
-        { className: __WEBPACK_IMPORTED_MODULE_2__App_css___default.a.App },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'div',
-          { className: __WEBPACK_IMPORTED_MODULE_2__App_css___default.a.AppHeader },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            { className: __WEBPACK_IMPORTED_MODULE_2__App_css___default.a.AppTitle },
-            'ChatApp'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            { className: __WEBPACK_IMPORTED_MODULE_2__App_css___default.a.AppRoom },
-            'App room'
-          )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'div',
-          { className: __WEBPACK_IMPORTED_MODULE_2__App_css___default.a.AppBody },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__UsersList__["a" /* default */], {
-            users: this.state.users
-          }),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            { className: __WEBPACK_IMPORTED_MODULE_2__App_css___default.a.MessageWrapper },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__MessageList__["a" /* default */], {
-              messages: this.state.messages
-            }),
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__MessageForm__["a" /* default */], {
-              onMessageSubmit: function onMessageSubmit(message) {
-                return _this3.handleMessageSubmit(message);
-              },
-              name: this.state.name
-            })
-          )
-        )
-      );
-    }
-  }, {
-    key: 'renderUserForm',
-    value: function renderUserForm() {
-      var _this4 = this;
+			return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+				'div',
+				{ className: __WEBPACK_IMPORTED_MODULE_2__App_css___default.a.App },
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					'div',
+					{ className: __WEBPACK_IMPORTED_MODULE_2__App_css___default.a.AppHeader },
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'div',
+						{ className: __WEBPACK_IMPORTED_MODULE_2__App_css___default.a.AppTitle },
+						'ChatApp'
+					),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'div',
+						{ className: __WEBPACK_IMPORTED_MODULE_2__App_css___default.a.AppRoom },
+						'App room'
+					)
+				),
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					'div',
+					{ className: __WEBPACK_IMPORTED_MODULE_2__App_css___default.a.AppBody },
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__UsersList__["a" /* default */], {
+						users: this.state.users
+					}),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'div',
+						{ className: __WEBPACK_IMPORTED_MODULE_2__App_css___default.a.MessageWrapper },
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__MessageList__["a" /* default */], {
+							messages: this.state.messages
+						}),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__MessageForm__["a" /* default */], {
+							onMessageSubmit: function onMessageSubmit(message) {
+								return _this3.handleMessageSubmit(message);
+							},
+							name: this.state.name
+						})
+					)
+				)
+			);
+		}
+	}, {
+		key: 'renderUserForm',
+		value: function renderUserForm() {
+			var _this4 = this;
 
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__UserForm__["a" /* default */], { onUserSubmit: function onUserSubmit(name) {
-          return _this4.handleUserSubmit(name);
-        } });
-    }
-  }, {
-    key: 'messageReceive',
-    value: function messageReceive(message) {
-      var messages = [message].concat(_toConsumableArray(this.state.messages));
-      this.setState({ messages: messages });
-    }
-  }, {
-    key: 'chatUpdate',
-    value: function chatUpdate(users) {
-      this.setState({ users: users });
-    }
-  }, {
-    key: 'handleMessageSubmit',
-    value: function handleMessageSubmit(message) {
-      var messages = [message].concat(_toConsumableArray(this.state.messages));
-      this.setState({ messages: messages });
-      socket.emit('message', message);
-    }
-  }, {
-    key: 'handleUserSubmit',
-    value: function handleUserSubmit(name) {
-      this.setState({ name: name });
-      socket.emit('join', name);
-    }
-  }]);
+			return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__UserForm__["a" /* default */], { onUserSubmit: function onUserSubmit(name) {
+					return _this4.handleUserSubmit(name);
+				} });
+		}
+	}, {
+		key: 'messageReceive',
+		value: function messageReceive(message) {
+			var messages = [message].concat(_toConsumableArray(this.state.messages));
+			this.setState({ messages: messages });
+		}
+	}, {
+		key: 'chatUpdate',
+		value: function chatUpdate(users) {
+			this.setState({ users: users });
+		}
+	}, {
+		key: 'handleMessageSubmit',
+		value: function handleMessageSubmit(message) {
+			var messages = [message].concat(_toConsumableArray(this.state.messages));
+			this.setState({ messages: messages });
+			socket.emit('message', message);
+		}
+	}, {
+		key: 'handleUserSubmit',
+		value: function handleUserSubmit(name) {
+			this.setState({ name: name });
+			socket.emit('join', name);
+		}
+	}]);
 
-  return App;
+	return App;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 ;
@@ -15031,7 +15029,7 @@ var MessageForm = function (_Component) {
   }]);
 
   return MessageForm;
-}(Component);
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (MessageForm);
 
