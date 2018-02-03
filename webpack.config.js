@@ -19,10 +19,11 @@ if (env === 'production') {
 }
 
 module.exports = {
-    entry: [
+    entry: (env !== 'production' ? [
         'react-hot-loader/patch',
-        './client/index.js'
-    ],
+        'webpack-dev-server/client?http://localhost:8080',
+        'webpack/hot/only-dev-server',
+    ] : []).concat(['./client/index.js']),
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: './bundle.js'
